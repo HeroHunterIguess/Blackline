@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 global="*uid://11g5hwtlhpgy"
 data="*uid://bkpq6rfaymkgj"
 enemy_methods="*uid://cdv2fmfqusiql"
+attack_methods="*uid://djk3w76bpxat6"
 
 [display]
 

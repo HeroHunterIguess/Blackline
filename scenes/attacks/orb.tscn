@@ -6,13 +6,13 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_7v8ub"]
 radius = 56.0
 
-[node name="orb" type="Area2D" unique_id=1435399317]
+[node name="damage_orb" type="Area2D" unique_id=1435399317]
 script = ExtResource("1_7v8ub")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1659783459]
 shape = SubResource("CircleShape2D_7v8ub")
 
-[node name="BurstTriggerRange" type="Sprite2D" parent="." unique_id=1508132886]
+[node name="sprite" type="Sprite2D" parent="." unique_id=1508132886]
 position = Vector2(-1.9073486e-06, 1.9073486e-06)
 scale = Vector2(0.13399997, 0.13399997)
 texture = ExtResource("1_ixx3c")
