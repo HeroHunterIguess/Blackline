@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://diklr234qsuy7" path="res://scripts/ui/upgrade_menu.gd" id="1_vsubm"]
 
 [node name="upgrade_menu" type="CanvasLayer" unique_id=75080340]
+process_mode = 3
 script = ExtResource("1_vsubm")
 
 [node name="menu_background" type="Sprite2D" parent="." unique_id=209718088]
