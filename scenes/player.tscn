@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://mwekxer4e5ya" path="res://scripts/game/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://dilao2o8ys7jd" path="res://art/objects_characters/player.png" id="2_g2els"]
+[ext_resource type="PackedScene" uid="uid://dgheaprjvgmdl" path="res://scenes/attacks/orb.tscn" id="3_qhqgy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2brh"]
 size = Vector2(32, 64)
@@ -13,6 +14,8 @@ size = Vector2(22.625, 55)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_g2els")
+
+[node name="damage_orb" parent="." unique_id=1435399317 instance=ExtResource("3_qhqgy")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1315930475 groups=["player"]]
 shape = SubResource("RectangleShape2D_g2brh")
