@@ -32,6 +32,7 @@ var dashing = false
 var ground_slam = null
 
 
+### hit functions ###
 func take_dmg(amount):
 	if !dashing && !data.slamming:
 		data.player_health -= amount
@@ -159,7 +160,7 @@ const melee_preload = preload("res://scenes/attacks/basic_melee.tscn")
 const ground_slam_preload = preload("res://scenes/attacks/ground_slam.tscn")
 const burst_preload = preload("res://scenes/attacks/player_burst_attack.tscn")
 
-### main inputs and attacks ###
+### main (non-movement) inputs and attacks ###
 func _process(_delta):
 	
 	# camera control:
@@ -170,7 +171,6 @@ func _process(_delta):
 		get_parent().get_node("Camera2D").global_position.x = 5000 - get_viewport_rect().size.x / 2
 	if self.global_position.x - (get_viewport_rect().size.x / 2) < 0:
 		get_parent().get_node("Camera2D").global_position.x = get_viewport_rect().size.x / 2
-
 	
 	# check if player dies
 	if data.player_health <= 0:

@@ -6,7 +6,7 @@ const DAMAGE = 8
 
 var health = 100
 
-# updating movement and physics every frame
+### update physics and movement ###
 func _physics_process(delta: float) -> void:
 	
 	# move roughly towards player but not fully

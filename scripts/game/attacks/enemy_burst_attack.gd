@@ -16,6 +16,8 @@ func _process(_delta):
 	# scale up explosion sprite
 	$Explosion.scale += Vector2(global.SCALE_SPEED, global.SCALE_SPEED)
 
+### damage player ###
+### (seperate from method in attack_methods.gd bc its attacking player) ###
 func _on_area_entered(area: Area2D) -> void:
 	# damage things in area
 	var object = area.get_parent()

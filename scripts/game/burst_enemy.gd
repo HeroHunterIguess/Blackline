@@ -7,10 +7,9 @@ const BURST_COOLDOWN = 250
 var burst_timer = 0.0
 var health = 150
 
-# low damage bc it has an ability
-const DAMAGE = 2
+const DAMAGE = 2 # low damage bc it has an ability
 
-# updating movement and physics every frame
+### update physics and movement ###
 func _physics_process(delta: float) -> void:
 	
 	# move roughly towards player but not fully
@@ -39,7 +38,7 @@ func _physics_process(delta: float) -> void:
 	# update position based on velocity
 	move_and_slide()
 
-# update shit every frame
+# check for death every frame
 func _process(_delta):
 	if (health <= 0):
 		die()

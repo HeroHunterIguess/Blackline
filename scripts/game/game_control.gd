@@ -10,7 +10,7 @@ var amount_to_upgrade =  1 # normally 6
 const enemy_preload = preload("res://scenes/enemy_types/basic_enemy.tscn")
 const burst_enemy_preload = preload("res://scenes/enemy_types/burst_enemy.tscn")
 
-
+### set location of newly spawned object (enemy) ###
 func set_location(object):
 	var screen_width = get_viewport_rect().size.x
 	var left_location = $Camera2D.global_position.x - (screen_width - 250)
@@ -39,7 +39,7 @@ func set_location(object):
 	# set y to a value close to ground
 	object.global_position.y = 530
 
-
+### spawn enemies on time loop ###
 func _ready():
 	while game_running:
 		# spawn enemies based on time elapsed
@@ -66,6 +66,8 @@ func _ready():
 		# add extra time for each round bc there will be more enemies
 		round_bonus_time += 0.9
 
+
+### spawn upgrade menu after certain amount of kills ###
 const upgrade_menu_preload = preload("res://scenes/menus/upgrade_menu.tscn")
 
 func _process(_delta):

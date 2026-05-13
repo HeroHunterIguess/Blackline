@@ -3,6 +3,7 @@ extends "res://scripts/autoloads/attack_methods.gd"
 const DAMAGE = 55
 const KNOCKBACK = 1250
 
+### spawn and deal damage ###
 func _on_area_entered(area: Area2D) -> void:
 	deal_damage(area, DAMAGE, KNOCKBACK)
 	

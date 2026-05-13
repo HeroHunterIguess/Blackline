@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 ### upgrade paths ###
-const melee_upgrades = ["Basic", "Long"] # long_melee not implimented
+const melee_upgrades = ["Basic melee", "Long melee"] # long_melee not implimented
 var current_melee_tier = 0
 
 const burst_upgrades = ["Burst", "Ground slam", "Super slam"] # super_slam not implimented
@@ -27,7 +27,7 @@ func _ready():
 	
 	# set button upgrade labels
 	if button_1_rng == 1:
-		$upgrade_1.text = melee_upgrades[current_melee_tier] + " melee"
+		$upgrade_1.text = "Unlock " + melee_upgrades[current_melee_tier]
 	if button_1_rng == 2:
 		$upgrade_1.text = "Unlock " + burst_upgrades[current_burst_tier]
 	if button_1_rng == 3:

@@ -2,13 +2,13 @@ extends Area2D
 
 const HEALING = 6
 
+### heal player ###
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player"):
 		data.player_health += HEALING
 		#sfx?
 		
 		queue_free()
-
 
 # bob up and down over time
 var amplitude = 0.175

@@ -1,5 +1,8 @@
 extends "res://scripts/autoloads/attack_methods.gd"
 
+### DAMAGE ORB IS CURRENTLY PARTIALLY BROKEN ###
+### (enemies are detecting it as a wall and jumping) ###
+
 const DAMAGE = 25
 const KNOCKBACK = 250
 const COOLDOWN = 0.45

@@ -1,8 +1,7 @@
 extends CharacterBody2D
-
-
 # has all the base methods for enemy types etc
 
+### base hit functions ###
 func take_damage(health, amount):
 	health -= amount
 	return health
@@ -19,7 +18,7 @@ func take_kb(force, is_right):
 var rng = RandomNumberGenerator.new()
 const health_pickup_preload = preload("res://scenes/objects/health_pickup.tscn")
 
-# kill enemy and maybe drop pickups
+# kill enemy and drop pickups
 func die():
 	# sometimes drop health pickup
 	var random_number = rng.randi_range(1, 3)
