@@ -21,7 +21,7 @@ var score = 0
 ### ability slots ###
 var melee_slot = "basic"
 # basic, ...
-var range_slot = "laser" # laser is not yet implimented
+var range_slot = "" # laser is not yet implimented
 # ...
-var burst_slot = "slam"
+var burst_slot = ""
 # slam, burst, ...
