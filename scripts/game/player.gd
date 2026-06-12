@@ -35,15 +35,19 @@ var ground_slam = null
 var amplitude = 0.125
 var frequency = 4.5
 var time = 0.0
-var is_animating_halo = false
+var showing_halo = false
 var visibility_change = false
 
 # scale halo width
-func halo_animation(speed, delta):
-	if $Player/halo1.visible:
-		$Player/halo1.scale.move_toward(Vector2(1, 1), delta)
+func halo_animation(speed):
+	if showing_halo:
+		$Player/halo1.scale.x += speed
+		if $Player/halo1.scale.x > 0.75:
+			$Player/halo1.scale.x = 0.75
 	else:
-		$Player/halo1.scale.move_toward(Vector2(0, 1), delta)
+		$Player/halo1.scale.x -= speed
+		if $Player/halo1.scale.x < 0:
+			$Player/halo1.scale.x = 0
 
 ### hit functions ###
 func take_dmg(amount):
@@ -248,20 +252,16 @@ func _process(delta):
 			is_attacking = false
 	
 	# halo for the dash to show availability
-	visibility_change = $Player/halo1.visible
-	if data.dash_timer <= 0:
-		$Player/halo1.visible = true
-	else:
-		await get_tree().create_timer(0.5).timeout
-		$Player/halo1.visible = false
+	visibility_change = showing_halo
+	showing_halo = data.dash_timer <= 0
 	
-	if visibility_change != $Player/halo1.visible:
-		if visibility_change:
+	if visibility_change != showing_halo:
+		if showing_halo:
 			$Player/halo1.scale.x = 0
 		else:
 			$Player/halo1.scale.x = 0.75
 	
-	halo_animation(0.05, delta)
+	halo_animation(5 * delta)
 	
 	time += delta * frequency
 	$Player/halo1.global_position.y += (amplitude * sin(time))
