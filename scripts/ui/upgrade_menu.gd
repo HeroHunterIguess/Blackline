@@ -36,7 +36,7 @@ func _ready():
 	if button_2_rng == 1:
 		$upgrade_2.text = "Unlock " + movement_upgrades[current_movement_upgrade]
 	if button_2_rng == 2:
-		$upgrade_2.text = repeating_upgrades[rng.randi_range(0, len(repeating_upgrades))]
+		$upgrade_2.text = repeating_upgrades[rng.randi_range(0, len(repeating_upgrades) - 1)]
 	
 
 

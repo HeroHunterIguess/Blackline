@@ -31,6 +31,19 @@ var is_attacking = false
 var dashing = false
 var ground_slam = null
 
+# halo-related variables
+var amplitude = 0.125
+var frequency = 4.5
+var time = 0.0
+var is_animating_halo = false
+var visibility_change = false
+
+# scale halo width
+func halo_animation(speed, delta):
+	if $Player/halo1.visible:
+		$Player/halo1.scale.move_toward(Vector2(1, 1), delta)
+	else:
+		$Player/halo1.scale.move_toward(Vector2(0, 1), delta)
 
 ### hit functions ###
 func take_dmg(amount):
@@ -161,7 +174,7 @@ const ground_slam_preload = preload("res://scenes/attacks/ground_slam.tscn")
 const burst_preload = preload("res://scenes/attacks/player_burst_attack.tscn")
 
 ### main (non-movement) inputs and attacks ###
-func _process(_delta):
+func _process(delta):
 	
 	# camera control:
 	get_parent().get_node("Camera2D").global_position.x = self.global_position.x
@@ -233,3 +246,22 @@ func _process(_delta):
 				burst.queue_free()
 			
 			is_attacking = false
+	
+	# halo for the dash to show availability
+	visibility_change = $Player/halo1.visible
+	if data.dash_timer <= 0:
+		$Player/halo1.visible = true
+	else:
+		await get_tree().create_timer(0.5).timeout
+		$Player/halo1.visible = false
+	
+	if visibility_change != $Player/halo1.visible:
+		if visibility_change:
+			$Player/halo1.scale.x = 0
+		else:
+			$Player/halo1.scale.x = 0.75
+	
+	halo_animation(0.05, delta)
+	
+	time += delta * frequency
+	$Player/halo1.global_position.y += (amplitude * sin(time))

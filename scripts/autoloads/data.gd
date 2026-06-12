@@ -8,7 +8,6 @@ var burst_timer = 0.0
 
 var player_health = 100
 
-
 ### player related things ###
 var max_jumps = 2
 var slamming = false
