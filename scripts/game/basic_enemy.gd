@@ -8,32 +8,8 @@ var health = 100
 
 ### update physics and movement ###
 func _physics_process(delta: float) -> void:
-	
 	# move roughly towards player but not fully
-	var random_number = rng.randi_range(1, 3)
-	
-	if random_number == 1:
-		if get_tree().root.find_child("player",true,false).to_local(self.global_position).x >= 0:
-			velocity.x = move_toward(velocity.x, SOFT_SPEED_CAP, global.FRICTION * delta)
-		elif get_tree().root.find_child("player",true,false).to_local(self.global_position).x < 0:
-			velocity.x = move_toward(velocity.x, -SOFT_SPEED_CAP, global.FRICTION * delta)
-	else:
-		if get_tree().root.find_child("player",true,false).to_local(self.global_position).x >= 0:
-			velocity.x = move_toward(velocity.x, -SOFT_SPEED_CAP, global.FRICTION * delta)
-		elif get_tree().root.find_child("player",true,false).to_local(self.global_position).x < 0:
-			velocity.x = move_toward(velocity.x, SOFT_SPEED_CAP, global.FRICTION * delta)
-	
-	# jump if at wall/other enemy
-	if is_on_wall() && is_on_floor():
-		velocity.y -= JUMP_FORCE
-	
-	# apply gravity
-	velocity.y += global.GRAVITY * delta
-	if velocity.y > global.TERMINAL_VELOCITY:
-		velocity.y = global.TERMINAL_VELOCITY
-	
-	# update position based on velocity
-	move_and_slide()
+	enemy_methods.movement(self, 3, SOFT_SPEED_CAP, delta, JUMP_FORCE)
 
 # check for death
 func _process(_delta):

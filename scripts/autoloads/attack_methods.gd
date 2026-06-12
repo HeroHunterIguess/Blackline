@@ -6,7 +6,7 @@ func deal_damage(area, damage, kb):
 		if object.has_method("take_damage"):
 			object.health = object.take_damage(object.health, damage)
 		
-		if object.has_method("take_kb"):	
+		if object.has_method("take_kb"):
 			if area.to_local(self.global_position).x >= 0:
 					object.take_kb(kb, false)
 			else:
