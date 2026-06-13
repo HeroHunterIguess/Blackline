@@ -35,9 +35,11 @@ var ground_slam = null
 var amplitude = 0.125
 var frequency = 4.5
 var time = 0.0
-var showing_halo = [false, false]
-var visibility_change = [false, false]
+var showing_halo = Array()
+var visibility_change = Array()
+var halo_shifting = Array()
 var halos
+var halo_shift
 
 # scale halo width
 func halo_animation(speed, i):
@@ -50,9 +52,16 @@ func halo_animation(speed, i):
 		if halos[i].scale.x < 0:
 			halos[i].scale.x = 0
 
-# creates a list of halo objects
+# creates a list of halo objects and initializes some variables
 func _ready() -> void:
-	halos = [get_node("Player/halo1"), get_node("Player/halo2")]
+	halos = [get_node("Player/halo1"), get_node("Player/halo2"), get_node("Player/halo3")]
+	halo_shift = halos[0].global_position.y - halos[1].global_position.y
+	showing_halo.resize(halos.size())
+	showing_halo.fill(true)
+	visibility_change.resize(halos.size())
+	visibility_change.fill(false)
+	halo_shifting.resize(halos.size())
+	halo_shifting.fill(false)
 
 ### hit functions ###
 func take_dmg(amount):
@@ -257,21 +266,39 @@ func _process(delta):
 			is_attacking = false
 	
 	# halo for the dash to show availability
-	for i in range(2):
+	for i in range(halos.size()):
 		visibility_change[i] = showing_halo[i]
-		if i == 0:
-			showing_halo[i] = data.dash_timer <= 0
-		if i == 1:
-			showing_halo[i] = data.slam_timer <= 0
 		
-		#CHECK IF THIS NEXT PART IS EVEN NEEDED
+		if i == 0:
+			showing_halo[0] = data.dash_timer <= 0
+		else: if i == 1:
+			halos[1].visible = true
+			if data.burst_slot == "slam":
+				showing_halo[1] = data.slam_timer <= 0
+			else:
+				showing_halo[1] = false
+				halos[1].visible = false
+		else: if i == 2:
+			halos[2].visible = true
+			if data.burst_slot == "burst":
+				showing_halo[2] = data.burst_timer <= 0
+			else:
+				showing_halo[2] = false
+				halos[2].visible = false
+		
 		if visibility_change[i] != showing_halo[i]:
 			if showing_halo[i]:
-				halos[i].scale.x = 0
+				for j in range(halos.size() - i - 1):
+					j += i + 1
+					halos[j].global_position.y -= halo_shift
 			else:
-				halos[i].scale.x = 0.75
+				# this makes it so that the halos don't drop ads soon as the other one begins to disappear
+				await get_tree().create_timer(0.1).timeout
+				for j in range(halos.size() - i - 1):
+					j += i + 1
+					halos[j].global_position.y += halo_shift
 		
 		halo_animation(5 * delta, i)
-		halos[i].global_position.y += (amplitude * sin(time + 20 * i))
+		halos[i].global_position.y += (amplitude * sin(time + i * 5))
 		
 	time += delta * frequency
