@@ -1,6 +1,6 @@
 extends Node2D
 
-const AMOUNT_OF_PLATFORMS = 4
+const AMOUNT_OF_PLATFORMS = 5
 
 var start_time = Time.get_unix_time_from_system() - 20
 var game_running = true
@@ -55,11 +55,15 @@ func _ready():
 		platform.global_position.y = rng.randi_range(400,0)
 		platform.global_position.x = rng.randi_range(100, 4550)
 		
+		platform.scale.x = rng.randf_range(0.45,1.4)
+		
 		# set to a random location but not too close to previous one
 		if len(locations) > 0:
 			while abs(platform.global_position.x - locations[-1].global_position.x) < 200:
 				platform.global_position.y = rng.randi_range(400,0)
 				platform.global_position.x = rng.randi_range(100, 4550) # edges of map
+				
+				platform.scale.x = rng.randf_range(0.3,1.3)
 		
 		locations.append(platform)
 		add_child(platform)
