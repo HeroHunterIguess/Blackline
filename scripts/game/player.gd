@@ -271,14 +271,14 @@ func _process(delta):
 		
 		if i == 0:
 			showing_halo[0] = data.dash_timer <= 0
-		else: if i == 1:
+		elif i == 1:
 			halos[1].visible = true
 			if data.burst_slot == "slam":
 				showing_halo[1] = data.slam_timer <= 0
 			else:
 				showing_halo[1] = false
 				halos[1].visible = false
-		else: if i == 2:
+		elif i == 2:
 			halos[2].visible = true
 			if data.burst_slot == "burst":
 				showing_halo[2] = data.burst_timer <= 0
