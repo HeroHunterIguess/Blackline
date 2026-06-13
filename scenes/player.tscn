@@ -7,6 +7,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2brh"]
 size = Vector2(32, 64)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qhqgy"]
+load_path = "res://.godot/imported/halo.png-22ac43e2ea765b21db90b809aad317d7.ctex"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 size = Vector2(22.625, 55)
 
@@ -29,6 +32,12 @@ texture = ExtResource("2_g2els")
 position = Vector2(0, -150.00003)
 scale = Vector2(0.75, 0.241)
 texture = ExtResource("3_qhqgy")
+
+[node name="halo2" type="Sprite2D" parent="Player" unique_id=2103256722]
+modulate = Color(0.7655023, 0, 0.27708352, 1)
+position = Vector2(0, -175.00002)
+scale = Vector2(0.75, 0.241)
+texture = SubResource("CompressedTexture2D_qhqgy")
 
 [node name="damage_hitbox" type="Area2D" parent="." unique_id=1326191578 groups=["player"]]
 collision_layer = 4

@@ -35,19 +35,24 @@ var ground_slam = null
 var amplitude = 0.125
 var frequency = 4.5
 var time = 0.0
-var showing_halo = false
-var visibility_change = false
+var showing_halo = [false, false]
+var visibility_change = [false, false]
+var halos
 
 # scale halo width
-func halo_animation(speed):
-	if showing_halo:
-		$Player/halo1.scale.x += speed
-		if $Player/halo1.scale.x > 0.75:
-			$Player/halo1.scale.x = 0.75
+func halo_animation(speed, i):
+	if showing_halo[i]:
+		halos[i].scale.x += speed
+		if halos[i].scale.x > 0.75:
+			halos[i].scale.x = 0.75
 	else:
-		$Player/halo1.scale.x -= speed
-		if $Player/halo1.scale.x < 0:
-			$Player/halo1.scale.x = 0
+		halos[i].scale.x -= speed
+		if halos[i].scale.x < 0:
+			halos[i].scale.x = 0
+
+# creates a list of halo objects
+func _ready() -> void:
+	halos = [get_node("Player/halo1"), get_node("Player/halo2")]
 
 ### hit functions ###
 func take_dmg(amount):
@@ -252,16 +257,21 @@ func _process(delta):
 			is_attacking = false
 	
 	# halo for the dash to show availability
-	visibility_change = showing_halo
-	showing_halo = data.dash_timer <= 0
-	
-	if visibility_change != showing_halo:
-		if showing_halo:
-			$Player/halo1.scale.x = 0
-		else:
-			$Player/halo1.scale.x = 0.75
-	
-	halo_animation(5 * delta)
-	
+	for i in range(2):
+		visibility_change[i] = showing_halo[i]
+		if i == 0:
+			showing_halo[i] = data.dash_timer <= 0
+		if i == 1:
+			showing_halo[i] = data.slam_timer <= 0
+		
+		#CHECK IF THIS NEXT PART IS EVEN NEEDED
+		if visibility_change[i] != showing_halo[i]:
+			if showing_halo[i]:
+				halos[i].scale.x = 0
+			else:
+				halos[i].scale.x = 0.75
+		
+		halo_animation(5 * delta, i)
+		halos[i].global_position.y += (amplitude * sin(time + 20 * i))
+		
 	time += delta * frequency
-	$Player/halo1.global_position.y += (amplitude * sin(time))
