@@ -58,7 +58,7 @@ func _ready():
 		# set to a random location but not too close to previous one
 		if len(locations) > 0:
 			while abs(platform.global_position.x - locations[-1].global_position.x) < 200:
-				platform.global_position.y = rng.randi_range(400,0) 
+				platform.global_position.y = rng.randi_range(400,0)
 				platform.global_position.x = rng.randi_range(100, 4550) # edges of map
 		
 		locations.append(platform)
