@@ -1,18 +1,44 @@
 [gd_scene format=3 uid="uid://c1cwax8at1aje"]
 
 [ext_resource type="Texture2D" uid="uid://bkmlc24e32ogs" path="res://art/objects_characters/ground_square.png" id="1_rykqe"]
+[ext_resource type="Texture2D" uid="uid://kh1yqxf7sei" path="res://art/misc/slam_woosh.png" id="2_s0n10"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_keq8f"]
-size = Vector2(320, 48)
+size = Vector2(160, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s0n10"]
+size = Vector2(40, 8)
 
 [node name="floating_solid" type="StaticBody2D" unique_id=1324326556]
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1813669354]
-shape = SubResource("RectangleShape2D_keq8f")
-
 [node name="GroundSquare" type="Sprite2D" parent="." unique_id=713541177]
-position = Vector2(1.5258789e-05, -7.6293945e-06)
-scale = Vector2(1.6000001, 0.23999995)
+position = Vector2(0, -3.999998)
+scale = Vector2(0.8, 0.19999997)
 texture = ExtResource("1_rykqe")
+
+[node name="SlamWoosh" type="Sprite2D" parent="." unique_id=1028212552]
+modulate = Color(0.25565878, 0.2556588, 0.25565875, 1)
+self_modulate = Color(0.87, 0.935, 1, 1)
+position = Vector2(-0.0009061265, 27.211008)
+rotation = 3.1415927
+scale = Vector2(0.8000057, 0.11767866)
+texture = ExtResource("2_s0n10")
+
+[node name="top" type="CollisionShape2D" parent="." unique_id=1813669354]
+position = Vector2(0, -20)
+shape = SubResource("RectangleShape2D_keq8f")
+one_way_collision = true
+
+[node name="side_1" type="CollisionShape2D" parent="." unique_id=376377232]
+position = Vector2(-76, -4)
+rotation = -1.5707964
+shape = SubResource("RectangleShape2D_s0n10")
+one_way_collision = true
+
+[node name="side_2" type="CollisionShape2D" parent="." unique_id=475151996]
+position = Vector2(76, -4)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_s0n10")
+one_way_collision = true
