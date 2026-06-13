@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://c1cwax8at1aje"]
+
+[ext_resource type="Texture2D" uid="uid://bkmlc24e32ogs" path="res://art/objects_characters/ground_square.png" id="1_rykqe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_keq8f"]
+size = Vector2(320, 48)
+
+[node name="floating_solid" type="StaticBody2D" unique_id=1324326556]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1813669354]
+shape = SubResource("RectangleShape2D_keq8f")
+
+[node name="GroundSquare" type="Sprite2D" parent="." unique_id=713541177]
+position = Vector2(1.5258789e-05, -7.6293945e-06)
+scale = Vector2(1.6000001, 0.23999995)
+texture = ExtResource("1_rykqe")

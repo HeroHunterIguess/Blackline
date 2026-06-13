@@ -1,5 +1,7 @@
 extends Node2D
 
+const AMOUNT_OF_PLATFORMS = 4
+
 var start_time = Time.get_unix_time_from_system() - 20
 var game_running = true
 var round_bonus_time = 0
@@ -9,6 +11,7 @@ var amount_to_upgrade =  5 # normally 5
 
 const enemy_preload = preload("res://scenes/enemy_types/basic_enemy.tscn")
 const burst_enemy_preload = preload("res://scenes/enemy_types/burst_enemy.tscn")
+
 
 ### set location of newly spawned object (enemy) ###
 func set_location(object):
@@ -39,8 +42,20 @@ func set_location(object):
 	# set y to a value close to ground
 	object.global_position.y = 530
 
-### spawn enemies on time loop ###
+
 func _ready():
+	### spawn floating platforms ###
+	const PLATFORM_PRELOAD = preload("res://scenes/objects/floating_solid.tscn")
+	var rng = RandomNumberGenerator.new()
+	
+	for i in range(AMOUNT_OF_PLATFORMS):
+		var platform = PLATFORM_PRELOAD.instantiate()
+		platform.global_position.y = rng.randi_range(400,-100) 
+		platform.global_position.x = rng.randi_range(32, 4668) # edges of map
+		add_child(platform)
+	
+	
+	### spawn enemies on time loop ###
 	while game_running:
 		# spawn enemies based on time elapsed
 		var amount = (Time.get_unix_time_from_system() - start_time) / 11
