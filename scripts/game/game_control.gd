@@ -59,11 +59,11 @@ func _ready():
 		
 		# set to a random location but not too close to previous one
 		if len(locations) > 0:
-			while abs(platform.global_position.x - locations[-1].global_position.x) < 200:
+			while abs(platform.global_position.x * platform.scale.x - locations[-1].global_position.x * locations[-1].scale.x) < 300:
 				platform.global_position.y = rng.randi_range(400,0)
 				platform.global_position.x = rng.randi_range(100, 4550) # edges of map
 				
-				platform.scale.x = rng.randf_range(0.3,1.3)
+				platform.scale.x = rng.randf_range(0.45,1.3)
 		
 		locations.append(platform)
 		add_child(platform)
