@@ -47,11 +47,21 @@ func _ready():
 	### spawn floating platforms ###
 	const PLATFORM_PRELOAD = preload("res://scenes/objects/floating_solid.tscn")
 	var rng = RandomNumberGenerator.new()
+	var locations = []
 	
 	for i in range(AMOUNT_OF_PLATFORMS):
 		var platform = PLATFORM_PRELOAD.instantiate()
-		platform.global_position.y = rng.randi_range(400,-100) 
-		platform.global_position.x = rng.randi_range(32, 4668) # edges of map
+		
+		platform.global_position.y = rng.randi_range(400,0)
+		platform.global_position.x = rng.randi_range(100, 4550)
+		
+		# set to a random location but not too close to previous one
+		if len(locations) > 0:
+			while abs(platform.global_position.x - locations[-1].global_position.x) < 200:
+				platform.global_position.y = rng.randi_range(400,0) 
+				platform.global_position.x = rng.randi_range(100, 4550) # edges of map
+		
+		locations.append(platform)
 		add_child(platform)
 	
 	

@@ -302,3 +302,7 @@ func _process(delta):
 		halos[i].global_position.y += (amplitude * sin(time + i * 5))
 		
 	time += delta * frequency
+	
+	
+	# set player health bar scale
+	$health_bar.scale.y = (data.player_health / 100.0) * 0.25
