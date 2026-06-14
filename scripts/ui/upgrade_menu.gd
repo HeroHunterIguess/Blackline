@@ -29,6 +29,8 @@ func _ready():
 	
 	button_1_rng = rng.randi_range(1, 3)
 	button_2_rng = rng.randi_range(1, 2)
+	if current_movement_upgrade >= 4:
+		button_2_rng = 2
 	
 	# set button upgrade labels
 	if button_1_rng == 1:
@@ -38,7 +40,7 @@ func _ready():
 	if button_1_rng == 3:
 		$upgrade_1.text = "Unlock " + ranged_upgrades[current_ranged_tier+1]
 	
-	if button_2_rng == 1 && current_movement_upgrade != 4:
+	if button_2_rng == 1:
 		$upgrade_2.text = "Unlock " + movement_upgrades[current_movement_upgrade]
 	if button_2_rng == 2:
 		$upgrade_2.text = repeating_upgrades[rng.randi_range(0, len(repeating_upgrades) - 1)]

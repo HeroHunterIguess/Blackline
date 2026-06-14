@@ -1,40 +1,89 @@
 [gd_scene format=3 uid="uid://b42cqrahu04by"]
 
-[ext_resource type="Texture2D" uid="uid://t4u1iarf7l71" path="res://art/backgrounds/background.png" id="1_j4pd8"]
 [ext_resource type="Script" uid="uid://diklr234qsuy7" path="res://scripts/ui/upgrade_menu.gd" id="1_vsubm"]
+[ext_resource type="Texture2D" uid="uid://cg0eaeltmbilk" path="res://art/misc/burst_trigger_range.png" id="2_v6agg"]
+[ext_resource type="Texture2D" uid="uid://chsrddhqvntxc" path="res://art/misc/attack.png" id="2_vsubm"]
+[ext_resource type="FontFile" uid="uid://cd0unvxelilu6" path="res://fonts/tenada/Tenada.ttf" id="3_8v7sf"]
 
 [node name="upgrade_menu" type="CanvasLayer" unique_id=75080340]
 process_mode = 3
 script = ExtResource("1_vsubm")
 
-[node name="menu_background" type="Sprite2D" parent="." unique_id=209718088]
-modulate = Color(2.5329797, 2.5329797, 2.5329797, 1)
-position = Vector2(959.99994, 383.99997)
-scale = Vector2(0.24999997, 0.17777781)
-texture = ExtResource("1_j4pd8")
+[node name="BurstTriggerRange" type="Sprite2D" parent="." unique_id=380939975]
+modulate = Color(1, 1, 1, 0.4509804)
+position = Vector2(960, 384)
+scale = Vector2(0.8, 0.384)
+texture = ExtResource("2_v6agg")
 
 [node name="Title" type="Label" parent="." unique_id=2114032475]
 offset_left = 640.0
-offset_top = 200.0
+offset_top = 264.0
 offset_right = 1280.0
-offset_bottom = 256.0
+offset_bottom = 320.0
+theme_override_fonts/font = ExtResource("3_8v7sf")
 theme_override_font_sizes/font_size = 40
 text = "Level up!"
 horizontal_alignment = 1
 
 [node name="upgrade_1" type="Button" parent="." unique_id=652821797]
-offset_left = 704.0
+offset_left = 712.0
 offset_top = 320.0
-offset_right = 896.0
+offset_right = 888.0
 offset_bottom = 448.0
+theme_override_fonts/font = ExtResource("3_8v7sf")
+theme_override_font_sizes/font_size = 20
 text = "upgrade 1"
+autowrap_mode = 2
 
 [node name="upgrade_2" type="Button" parent="." unique_id=1792014959]
-offset_left = 1024.0
+offset_left = 1032.0
 offset_top = 320.0
-offset_right = 1216.0
+offset_right = 1208.0
 offset_bottom = 448.0
+theme_override_fonts/font = ExtResource("3_8v7sf")
+theme_override_font_sizes/font_size = 20
 text = "upgrade 2"
+autowrap_mode = 2
+
+[node name="outline" type="Sprite2D" parent="." unique_id=835886078]
+position = Vector2(800, 324)
+scale = Vector2(0.9599998, 0.040000018)
+texture = ExtResource("2_vsubm")
+
+[node name="outline2" type="Sprite2D" parent="." unique_id=1128664243]
+position = Vector2(708, 384)
+scale = Vector2(0.03999988, 0.6399999)
+texture = ExtResource("2_vsubm")
+
+[node name="outline3" type="Sprite2D" parent="." unique_id=324411836]
+position = Vector2(800, 444)
+scale = Vector2(0.9600001, 0.04000001)
+texture = ExtResource("2_vsubm")
+
+[node name="outline4" type="Sprite2D" parent="." unique_id=1192281366]
+position = Vector2(892, 384)
+scale = Vector2(0.039999727, 0.63999987)
+texture = ExtResource("2_vsubm")
+
+[node name="outline5" type="Sprite2D" parent="." unique_id=1399177265]
+position = Vector2(1028, 384)
+scale = Vector2(0.039999846, 0.64000005)
+texture = ExtResource("2_vsubm")
+
+[node name="outline6" type="Sprite2D" parent="." unique_id=1851866537]
+position = Vector2(1120, 324)
+scale = Vector2(0.96000004, 0.0399999)
+texture = ExtResource("2_vsubm")
+
+[node name="outline7" type="Sprite2D" parent="." unique_id=1772262122]
+position = Vector2(1212, 384)
+scale = Vector2(0.040000122, 0.64)
+texture = ExtResource("2_vsubm")
+
+[node name="outline8" type="Sprite2D" parent="." unique_id=1280413766]
+position = Vector2(1116, 444)
+scale = Vector2(0.91999996, 0.040000055)
+texture = ExtResource("2_vsubm")
 
 [connection signal="button_down" from="upgrade_1" to="." method="_on_upgrade_1_button_down"]
 [connection signal="button_down" from="upgrade_2" to="." method="_on_upgrade_2_button_down"]
