@@ -15,8 +15,10 @@ var current_movement_upgrade = -1 # -1 means start with nothing
 const repeating_upgrades = ["Health increase", "Melee damage increase", "Ranged damage increase", "Burst damage increase"] # none of these are implimented
 
 var rng = RandomNumberGenerator.new()
+
 var button_1_rng = rng.randi_range(1, 3)
 var button_2_rng = rng.randi_range(1, 2)
+
 
 func close():
 	get_tree().paused = false
@@ -25,27 +27,36 @@ func close():
 func _ready():
 	get_tree().paused = true
 	
+	button_1_rng = rng.randi_range(1, 3)
+	button_2_rng = rng.randi_range(1, 2)
+	
 	# set button upgrade labels
 	if button_1_rng == 1:
-		$upgrade_1.text = "Unlock " + melee_upgrades[current_melee_tier]
+		$upgrade_1.text = "Unlock " + melee_upgrades[current_melee_tier+1]
 	if button_1_rng == 2:
-		$upgrade_1.text = "Unlock " + burst_upgrades[current_burst_tier]
+		$upgrade_1.text = "Unlock " + burst_upgrades[current_burst_tier+1]
 	if button_1_rng == 3:
-		$upgrade_1.text = "Unlock " + ranged_upgrades[current_ranged_tier]
+		$upgrade_1.text = "Unlock " + ranged_upgrades[current_ranged_tier+1]
 	
 	if button_2_rng == 1 && current_movement_upgrade != 4:
 		$upgrade_2.text = "Unlock " + movement_upgrades[current_movement_upgrade]
 	if button_2_rng == 2:
 		$upgrade_2.text = repeating_upgrades[rng.randi_range(0, len(repeating_upgrades) - 1)]
-	
 
 
 ### get upgrades ###
 func _on_upgrade_1_button_down() -> void:
 	# chose random upgrade path
 	
-	if button_1_rng == 1: # melee 
-		pass
+	if button_1_rng == 1: # melee upgrades
+		data.melee_slot = melee_upgrades[current_melee_tier+1]
+		current_melee_tier += 1
+	elif button_1_rng == 2: # burst upgrades
+		data.burst_slot = burst_upgrades[current_burst_tier+1]
+		current_burst_tier += 1
+	elif button_1_rng == 3: # ranged upgrades
+		data.range_slot = ranged_upgrades[current_ranged_tier+1]
+		current_ranged_tier += 1
 	
 	close()
 
