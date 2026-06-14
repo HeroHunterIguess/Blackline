@@ -218,7 +218,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("melee_slot"):
 		
 		# spawn basic melee attack
-		if data.melee_slot == "basic" && !is_attacking && !data.slamming:
+		if data.melee_slot == "Basic melee" && !is_attacking && !data.slamming:
 			var melee_attack = melee_preload.instantiate()
 			
 			is_attacking = true
@@ -240,7 +240,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("burst_slot"):
 		
 		# ground slam attack
-		if data.burst_slot == "slam" && !is_on_floor() && data.slam_timer <= 0 && !frozen:
+		if data.burst_slot == "Ground slam" && !is_on_floor() && data.slam_timer <= 0 && !frozen:
 			# spawn hitbox and set positiong
 			ground_slam = ground_slam_preload.instantiate()
 			add_child(ground_slam)
@@ -252,7 +252,7 @@ func _process(delta):
 			velocity.y = SLAM_FORCE
 		
 		# spawn in burst attack
-		if data.burst_slot == "burst" && !is_attacking && data.burst_timer <= 0:
+		if data.burst_slot == "Burst" && !is_attacking && data.burst_timer <= 0:
 			var burst = burst_preload.instantiate()
 			add_child(burst)
 			
@@ -273,14 +273,14 @@ func _process(delta):
 			showing_halo[0] = data.dash_timer <= 0
 		elif i == 1:
 			halos[1].visible = true
-			if data.burst_slot == "slam":
+			if data.burst_slot == "Ground slam":
 				showing_halo[1] = data.slam_timer <= 0
 			else:
 				showing_halo[1] = false
 				halos[1].visible = false
 		elif i == 2:
 			halos[2].visible = true
-			if data.burst_slot == "burst":
+			if data.burst_slot == "Burst":
 				showing_halo[2] = data.burst_timer <= 0
 			else:
 				showing_halo[2] = false
