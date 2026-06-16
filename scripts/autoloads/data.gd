@@ -12,10 +12,11 @@ var player_health = 100
 var max_jumps = 0 # 0 = only jumping on ground
 var slamming = false
 var can_freeze = true
-var has_dash = true
+var has_dash = false
 
 var score = 0
 
+var time_paused = 0.0
 
 ### ability slots ###
 var melee_slot = "Basic melee"
