@@ -265,11 +265,13 @@ func _process(delta):
 			
 			is_attacking = false
 	
+	
 	# halo for the dash to show availability
 	for i in range(halos.size()):
 		visibility_change[i] = showing_halo[i]
 		
 		if i == 0:
+			halos[0].visible = true
 			showing_halo[0] = data.dash_timer <= 0
 		elif i == 1:
 			halos[1].visible = true
