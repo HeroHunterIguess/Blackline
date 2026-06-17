@@ -33,7 +33,9 @@ func _on_burst_range_area_entered(area: Area2D) -> void:
 	if burst_timer <= 0 && area.is_in_group("player") && !data.slamming && health > 0:
 		burst_timer = BURST_COOLDOWN
 		
-		var burst = burst_preload.instantiate()
-		
-		add_child(burst)
-		burst.global_position = self.global_position
+		# only actually burst if dashing ... but still reset timer either way
+		if !data.dashing:
+			var burst = burst_preload.instantiate()
+			
+			add_child(burst)
+			burst.global_position = self.global_position

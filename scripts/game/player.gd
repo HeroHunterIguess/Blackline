@@ -28,7 +28,6 @@ var can_jump = false
 
 # attack/ability related things
 var is_attacking = false
-var dashing = false
 var ground_slam = null
 
 # halo-related variables
@@ -65,7 +64,7 @@ func _ready() -> void:
 
 ### hit functions ###
 func take_dmg(amount):
-	if !dashing && !data.slamming:
+	if !data.dashing && !data.slamming:
 		data.player_health -= amount
 		# hurt sfx/animations here:
 
@@ -109,13 +108,13 @@ func _physics_process(delta: float) -> void:
 		# dash in direction last pressed
 		if Input.is_action_just_pressed("dash") && data.dash_timer <= 0.0 && data.has_dash: 
 			data.dash_timer = DASH_COOLDOWN
-			dashing = true
+			data.dashing = true
 			if moving_right:
 				velocity.x += DASH_FORCE
 			elif !moving_right:
 				velocity.x -= DASH_FORCE
 			await get_tree().create_timer(0.25).timeout
-			dashing = false
+			data.dashing = false
 		
 	# double/triple jumping
 	if Input.is_action_just_pressed("jump") && !data.slamming:

@@ -17,6 +17,7 @@ var can_freeze = false
 var has_freeze = false
 
 var has_dash = false
+var dashing = false
 
 var score = 0
 
