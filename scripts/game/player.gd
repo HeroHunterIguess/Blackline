@@ -83,7 +83,6 @@ func _physics_process(delta: float) -> void:
 	
 	# update cooldowns/timers
 	data.dash_timer -= 1
-	data.slam_timer -= 1
 	data.burst_timer -= 1
 	
 	# apply gravity
@@ -111,7 +110,7 @@ func _physics_process(delta: float) -> void:
 			data.dashing = true
 			if moving_right:
 				velocity.x += DASH_FORCE
-			elif !moving_right:
+			else:
 				velocity.x -= DASH_FORCE
 			await get_tree().create_timer(0.25).timeout
 			data.dashing = false
@@ -152,7 +151,7 @@ func _physics_process(delta: float) -> void:
 		
 		is_attacking = false
 		data.slamming = false
-		data.slam_timer = SLAM_COOLDOWN
+		data.burst_timer = SLAM_COOLDOWN
 		
 		# reset ground slam instance if it exists
 		if ground_slam:
@@ -236,10 +235,10 @@ func _process(delta):
 	
 	# spawn burst/explosion attack
 	
-	if Input.is_action_just_pressed("burst_slot"):
+	if Input.is_action_just_pressed("burst_slot") and data.burst_timer <= 0:
 		
 		# ground slam attack
-		if data.burst_slot == "Ground slam" && !is_on_floor() && data.slam_timer <= 0 && !frozen:
+		if data.burst_slot == "Ground slam" && !is_on_floor() && !frozen:
 			# spawn hitbox and set positiong
 			ground_slam = ground_slam_preload.instantiate()
 			add_child(ground_slam)
@@ -251,7 +250,7 @@ func _process(delta):
 			velocity.y = SLAM_FORCE
 		
 		# spawn in burst attack
-		if data.burst_slot == "Burst" && !is_attacking && data.burst_timer <= 0:
+		if data.burst_slot == "Burst" && !is_attacking:
 			var burst = burst_preload.instantiate()
 			add_child(burst)
 			
@@ -279,15 +278,15 @@ func _process(delta):
 				halos[0].visible = false
 		elif i == 1:
 			halos[1].visible = true
-			if data.burst_slot == "Ground slam":
-				showing_halo[1] = data.slam_timer <= 0
+			if data.burst_slot != "":
+				showing_halo[1] = data.burst_timer <= 0
 			else:
 				showing_halo[1] = false
 				halos[1].visible = false
 		elif i == 2:
 			halos[2].visible = true
-			if data.burst_slot == "Burst":
-				showing_halo[2] = data.burst_timer <= 0
+			if data.range_slot != "":
+				showing_halo[2] = data.ranged_timer <= 0
 			else:
 				showing_halo[2] = false
 				halos[2].visible = false

@@ -2,9 +2,9 @@ extends Node
 
 ### data for the ui ###
 var dash_timer = 0.0
-var double_jumps = 0
-var slam_timer = 0.0
+var double_jumps = 0.0
 var burst_timer = 0.0
+var ranged_timer = 0.0 # not currently implemented
 
 var player_health = 100
 var max_health = 100
