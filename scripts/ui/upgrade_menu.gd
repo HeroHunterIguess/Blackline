@@ -37,7 +37,7 @@ func _ready():
 		button_2_rng = 2
 	
 	# set button upgrade labels
-	# THESE MIGHT BE ABLE TO OVERFLOW RIGHT NOW I NEED TO CHECK THIS MORE
+	# THESE ARE BE ABLE TO OVERFLOW RIGHT NOW I NEED TO CHECK THIS MORE
 	if button_1_rng == 1:
 		$upgrade_1.text = "Unlock " + melee_upgrades[data.current_melee_tier+1]
 	if button_1_rng == 2:
@@ -47,7 +47,13 @@ func _ready():
 	if button_2_rng == 1:
 		$upgrade_2.text = "Unlock " + movement_upgrades[data.current_movement_upgrade+1] 
 	if button_2_rng == 2:
-		repeat_upgrade_option = rng.randi_range(0, len(repeating_upgrades) - 1)
+		# make sure it never offers an upgrade for something you havent unlocked
+		
+		# THIS IS NOT FULLY IMPLIMENTED PLEASE FIX 
+		if data.current_ranged_tier > -1 and data.current_burst_tier > -1:
+			repeat_upgrade_option = rng.randi_range(0, len(repeating_upgrades) - 1)
+		elif data.current_ranged_tier > -1 and data.current_burst_tier == -1:
+			repeat_upgrade_option = rng.randi_range(0, len(repeating_upgrades) - 2)
 		$upgrade_2.text = repeating_upgrades[repeat_upgrade_option]
 
 
