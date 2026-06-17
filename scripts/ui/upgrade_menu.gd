@@ -20,7 +20,7 @@ var start_time = Time.get_unix_time_from_system()
 
 
 func close():
-	data.time_paused = Time.get_unix_time_from_system() - start_time
+	data.time_paused += Time.get_unix_time_from_system() - start_time
 	get_tree().paused = false
 	self.queue_free()
 
