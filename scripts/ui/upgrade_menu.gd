@@ -35,6 +35,7 @@ func _ready():
 		button_2_rng = 2
 	
 	# set button upgrade labels
+	# THESE MIGHT BE ABLE TO OVERFLOW RIGHT NOW I NEED TO CHECK THIS MORE
 	if button_1_rng == 1:
 		$upgrade_1.text = "Unlock " + melee_upgrades[data.current_melee_tier+1]
 	if button_1_rng == 2:
@@ -43,7 +44,7 @@ func _ready():
 		$upgrade_1.text = "Unlock " + ranged_upgrades[data.current_ranged_tier+1]
 	
 	if button_2_rng == 1:
-		$upgrade_2.text = "Unlock " + movement_upgrades[data.current_movement_upgrade+1]
+		$upgrade_2.text = "Unlock " + movement_upgrades[data.current_movement_upgrade+1] 
 	if button_2_rng == 2:
 		$upgrade_2.text = repeating_upgrades[rng.randi_range(0, len(repeating_upgrades) - 1)]
 
@@ -78,5 +79,7 @@ func _on_upgrade_2_button_down() -> void:
 			data.has_freeze = true
 		
 		data.current_movement_upgrade += 1
+	
+	# NEED TO IMPLIMENT REOCCURING ABILITIES
 	
 	close()
