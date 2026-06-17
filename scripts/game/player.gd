@@ -131,7 +131,7 @@ func _physics_process(delta: float) -> void:
 		
 		
 	# air freeze
-	if Input.is_action_just_pressed("air_freeze") && !is_on_floor() && data.can_freeze:
+	if Input.is_action_just_pressed("air_freeze") && !is_on_floor() && data.can_freeze && data.has_freeze:
 		frozen = true
 		data.can_freeze = false
 		velocity.y = 0

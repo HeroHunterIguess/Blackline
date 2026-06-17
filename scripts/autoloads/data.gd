@@ -11,7 +11,10 @@ var player_health = 100
 ### player related things ###
 var max_jumps = 0 # 0 = only jumping on ground
 var slamming = false
+
 var can_freeze = false
+var has_freeze = false
+
 var has_dash = false
 
 var score = 0
@@ -25,3 +28,9 @@ var range_slot = "" # laser is not yet implimented
 # ...
 var burst_slot = ""
 # slam, burst, ...
+
+### ability tiers ###
+var current_melee_tier = 0
+var current_burst_tier = -1 # -1 means start with nothing
+var current_ranged_tier = -1 # -1 means start with nothing
+var current_movement_upgrade = -1 # -1 means start with nothing
