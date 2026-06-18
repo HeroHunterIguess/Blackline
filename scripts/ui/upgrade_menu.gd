@@ -33,7 +33,7 @@ func _ready():
 	
 	button_1_rng = rng.randi_range(1, 3)
 	button_2_rng = rng.randi_range(1, 2)
-	if data.current_movement_upgrade >= 4:
+	if data.current_movement_upgrade > 3:
 		button_2_rng = 2
 	
 	# set button upgrade labels

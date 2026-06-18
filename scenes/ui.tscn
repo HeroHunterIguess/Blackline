@@ -8,7 +8,7 @@ script = ExtResource("1_nt7q6")
 
 [node name="health" type="Label" parent="." unique_id=1628544038]
 offset_right = 1920.0
-offset_bottom = 96.0
+offset_bottom = 88.0
 theme_override_fonts/font = ExtResource("2_x4jx1")
 theme_override_font_sizes/font_size = 48
 text = "100 HP"

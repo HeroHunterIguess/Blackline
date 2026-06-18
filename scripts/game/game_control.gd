@@ -8,7 +8,7 @@ var game_running = true
 var round_bonus_time = 0
 var offset = 0
 
-var amount_to_upgrade =  2
+var amount_to_upgrade = 2
 
 const enemy_preload = preload("res://scenes/enemy_types/basic_enemy.tscn")
 const burst_enemy_preload = preload("res://scenes/enemy_types/burst_enemy.tscn")
@@ -75,7 +75,7 @@ func _ready():
 	while game_running:
 		# spawn enemies based on time elapsed
 		var amount = ((Time.get_unix_time_from_system() - start_time) - data.time_paused) / 12
-		var burst_amount = ((Time.get_unix_time_from_system() - start_time) - data.time_paused) / 36
+		var burst_amount = ((Time.get_unix_time_from_system() - start_time) - data.time_paused) / 40
 		
 		# spawn basic enemies
 		for i in range(amount):
