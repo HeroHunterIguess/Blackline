@@ -115,7 +115,7 @@ func _physics_process(delta: float) -> void:
 				velocity.x += DASH_FORCE
 			else:
 				velocity.x -= DASH_FORCE
-			await get_tree().create_timer(0.25).timeout
+			await get_tree().create_timer(0.3).timeout
 			data.dashing = false
 		
 	# double/triple jumping
