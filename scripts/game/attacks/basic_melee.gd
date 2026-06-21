@@ -6,7 +6,7 @@ const KNOCKBACK = 270
 const SPEED = 0.8
 
 func _on_area_entered(area: Area2D) -> void:
-	deal_damage(area, DAMAGE, KNOCKBACK)
+	deal_damage(area, DAMAGE + data.melee_damage_increase, KNOCKBACK)
 
 # move in direction of attack
 func _process(_delta):
