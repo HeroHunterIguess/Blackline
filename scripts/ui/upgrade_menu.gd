@@ -5,7 +5,7 @@ const melee_upgrades = ["Basic melee", "Long melee"] # long_melee not implimente
 
 const burst_upgrades = ["Burst", "Ground slam", "Super slam"] # super_slam not implimented
 
-const ranged_upgrades = ["Laser gun", "Grenade", "Frag grenade"] # none of these are implimented
+const ranged_upgrades = ["Grenade", "Frag grenade", "Orbital strike"] # none of these are implimented
 
 const movement_upgrades = ["dash", "double jump", "air freeze", "triple jump"]
 const repeating_upgrades = ["Health increase", "Melee damage increase", "Ranged damage increase", "Burst damage increase"]
