@@ -76,8 +76,8 @@ func _ready():
 	### spawn enemies on time loop ###
 	while game_running:
 		# spawn enemies based on time elapsed
-		var amount = 25 / (1 + pow(2.71, -0.025 * time_since_start + 2.5))
-		var burst_amount = 8 / (1 + pow(2.71, -0.025 * time_since_start + 3))
+		var amount = 25 / (1 + pow(2.71, -0.03 * time_since_start + 2.5))
+		var burst_amount = 8 / (1 + pow(2.71, -0.03 * time_since_start + 3))
 		
 		# spawn basic enemies
 		for i in range(amount):
@@ -94,7 +94,7 @@ func _ready():
 			set_location(burst_enemy)
 		
 		# wait arbitrary amount of time then spawn more
-		await get_tree().create_timer(4 + round_bonus_time).timeout
+		await get_tree().create_timer(4 + round_bonus_time, false).timeout
 		
 		# add extra time for each round bc there will be more enemies
 		round_bonus_time += 0.75
