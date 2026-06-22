@@ -76,6 +76,7 @@ func _ready():
 	### spawn enemies on time loop ###
 	while game_running:
 		# spawn enemies based on time elapsed
+		# perhaps use: 25 / (1 + pow(2.71, -0.2 * timer + 4) for basic enemy amounts 
 		var amount = time_since_start / 12.0
 		var burst_amount = time_since_start / 40.0
 		
