@@ -18,23 +18,18 @@ var button_2_rng = rng.randi_range(1, 2)
 
 var repeat_upgrade_option
 
-var start_time = Time.get_unix_time_from_system()
-
-
 func close():
-	data.time_paused += Time.get_unix_time_from_system() - start_time
 	get_tree().paused = false
 	self.queue_free()
 
 func _ready():
-	start_time = Time.get_unix_time_from_system()
-	
 	get_tree().paused = true
 	
 	button_1_rng = rng.randi_range(1, 3)
 	button_2_rng = rng.randi_range(1, 2)
 	if data.current_movement_upgrade > 3:
 		button_2_rng = 2
+	
 	
 	# set button upgrade labels
 	# THESE ARE BE ABLE TO OVERFLOW RIGHT NOW I NEED TO CHECK THIS MORE
@@ -47,15 +42,8 @@ func _ready():
 	if button_2_rng == 1:
 		$upgrade_2.text = "Unlock " + movement_upgrades[data.current_movement_upgrade+1] 
 	if button_2_rng == 2:
-		# make sure it never offers an upgrade for something you havent unlocked
+		repeat_upgrade_option = rng.randi_range(0, len(repeating_upgrades) - 1)
 		
-		# THIS IS NOT FULLY IMPLIMENTED PLEASE FIX 
-		if data.current_ranged_tier > -1 and data.current_burst_tier > -1:
-			repeat_upgrade_option = rng.randi_range(0, len(repeating_upgrades) - 1)
-		elif data.current_ranged_tier > -1 and data.current_burst_tier == -1:
-			repeat_upgrade_option = rng.randi_range(0, len(repeating_upgrades) - 2)
-		else:
-			repeat_upgrade_option = rng.randi_range(0, len(repeating_upgrades) - 3)
 		$upgrade_2.text = repeating_upgrades[repeat_upgrade_option]
 
 

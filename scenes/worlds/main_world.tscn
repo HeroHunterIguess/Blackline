@@ -140,3 +140,9 @@ angle_max = 720.0
 scale_amount_min = 0.5
 scale_amount_max = 1.75
 color = Color(1, 1, 1, 0.05490196)
+
+[node name="Timer" type="Timer" parent="." unique_id=2079455115]
+process_mode = 1
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

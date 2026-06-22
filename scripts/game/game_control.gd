@@ -3,12 +3,13 @@ extends Node2D
 var rng = RandomNumberGenerator.new()
 var AMOUNT_OF_PLATFORMS = rng.randi_range(4,6)
 
-var start_time = Time.get_unix_time_from_system() - 20
 var game_running = true
 var round_bonus_time = 0
 var offset = 0
 
 var amount_to_upgrade = 2
+
+var time_since_start = 20
 
 const enemy_preload = preload("res://scenes/enemy_types/basic_enemy.tscn")
 const burst_enemy_preload = preload("res://scenes/enemy_types/burst_enemy.tscn")
@@ -75,8 +76,8 @@ func _ready():
 	### spawn enemies on time loop ###
 	while game_running:
 		# spawn enemies based on time elapsed
-		var amount = ((Time.get_unix_time_from_system() - start_time) - data.time_paused) / 12
-		var burst_amount = ((Time.get_unix_time_from_system() - start_time) - data.time_paused) / 40
+		var amount = time_since_start / 12.0
+		var burst_amount = time_since_start / 40.0
 		
 		# spawn basic enemies
 		for i in range(amount):
@@ -119,3 +120,7 @@ func _process(_delta):
 		if Input.is_action_just_pressed("pause"):
 			$Camera2D/pause_menu.visible = true
 			get_tree().paused = true
+
+# increment amount of seconds since start
+func _on_timer_timeout() -> void:
+	time_since_start += 1

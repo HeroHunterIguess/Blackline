@@ -22,8 +22,6 @@ var dashing = false
 
 var score = 0
 
-var time_paused = 0.0
-
 ### ability slots ###
 var melee_slot = "Basic melee"
 # basic, ...

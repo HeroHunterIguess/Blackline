@@ -16,30 +16,30 @@ texture = ExtResource("1_fwndu")
 
 [node name="resume_button" type="Button" parent="." unique_id=1348000106]
 offset_left = 704.0
-offset_top = 232.0
+offset_top = 136.00002
 offset_right = 1216.0
-offset_bottom = 304.0
+offset_bottom = 208.00002
 theme_override_fonts/font = ExtResource("2_7unhi")
 theme_override_font_sizes/font_size = 40
 text = "RESUME"
 
 [node name="Attack" type="Sprite2D" parent="." unique_id=1407810047]
-position = Vector2(708, 264)
+position = Vector2(708, 168)
 scale = Vector2(0.04000001, 0.40000013)
 texture = ExtResource("3_gsnt3")
 
 [node name="Attack2" type="Sprite2D" parent="." unique_id=1738466245]
-position = Vector2(960, 228)
+position = Vector2(960, 132.00002)
 scale = Vector2(2.5600002, 0.040000044)
 texture = ExtResource("3_gsnt3")
 
 [node name="Attack3" type="Sprite2D" parent="." unique_id=1051532523]
-position = Vector2(1212, 264)
+position = Vector2(1212, 168.00003)
 scale = Vector2(0.040000122, 0.39999995)
 texture = ExtResource("3_gsnt3")
 
 [node name="Attack4" type="Sprite2D" parent="." unique_id=1010000631]
-position = Vector2(960, 300)
+position = Vector2(960, 204.00003)
 scale = Vector2(2.5599997, 0.03999999)
 texture = ExtResource("3_gsnt3")
 
