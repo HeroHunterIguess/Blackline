@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d228r6p8favlf"
+path="res://.godot/imported/thump_boom.mp3-ed1e5a4ce1402680f6df070b06cd2b86.mp3str"
+
+[deps]
+
+source_file="res://audio/game sfx/thump_boom.mp3"
+dest_files=["res://.godot/imported/thump_boom.mp3-ed1e5a4ce1402680f6df070b06cd2b86.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
