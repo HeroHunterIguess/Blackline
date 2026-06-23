@@ -32,15 +32,38 @@ func _ready():
 	
 	
 	# set button upgrade labels
-	# THESE ARE BE ABLE TO OVERFLOW RIGHT NOW I NEED TO CHECK THIS MORE
-	if button_1_rng == 1:
-		$upgrade_1.text = "Unlock " + melee_upgrades[data.current_melee_tier+1]
-	if button_1_rng == 2:
-		$upgrade_1.text = "Unlock " + burst_upgrades[data.current_burst_tier+1]
-	if button_1_rng == 3:
-		$upgrade_1.text = "Unlock " + ranged_upgrades[data.current_ranged_tier+1]
+	$upgrade_1.text = ""
+	var iterations = 0
+	# loop until there is a valid one
+	
+	### this section for upgrades needs to be tested to ensure it functions properly ###
+	while $upgrade_1.text == "":
+		if button_1_rng == 1:
+			if data.current_melee_tier < 3: 
+				$upgrade_1.text = "Unlock " + melee_upgrades[data.current_melee_tier+1]
+			else:
+				button_1_rng = 2
+		if button_1_rng == 2:
+			if data.current_burst_tier < 4:
+				$upgrade_1.text = "Unlock " + burst_upgrades[data.current_burst_tier+1]
+			else:
+				button_1_rng = 3
+		if button_1_rng == 3:
+			if data.current_ranged_tier < 4:
+				$upgrade_1.text = "Unlock " + ranged_upgrades[data.current_ranged_tier+1]
+			else:
+				button_1_rng = 1
+		
+		iterations += 1
+		
+		if iterations > 2: # for rn just make the button empty once everything has been unlocked
+			$upgrade_1.text = "No new unlocks."
+			button_1_rng = 0 # nothing
+			break
+	
 	if button_2_rng == 1:
-		$upgrade_2.text = "Unlock " + movement_upgrades[data.current_movement_upgrade+1] 
+		if data.current_movement_upgrade < 4:
+			$upgrade_2.text = "Unlock " + movement_upgrades[data.current_movement_upgrade+1] 
 	if button_2_rng == 2:
 		repeat_upgrade_option = rng.randi_range(0, len(repeating_upgrades) - 1)
 		
@@ -60,6 +83,8 @@ func _on_upgrade_1_button_down() -> void:
 	elif button_1_rng == 3: # ranged upgrades
 		data.range_slot = ranged_upgrades[data.current_ranged_tier+1]
 		data.current_ranged_tier += 1
+	elif button_1_rng == 0:
+		return # dont do anything if they click the blank button
 	
 	close()
 
