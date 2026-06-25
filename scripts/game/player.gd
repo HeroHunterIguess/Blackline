@@ -13,7 +13,7 @@ const DASH_COOLDOWN = 75
 const DASH_FORCE = 1000
 
 const SLAM_COOLDOWN = 175
-const SLAM_FORCE = 1545
+const SLAM_FORCE = 1645
 const SLAM_REBOUNCE = 550
 
 const BURST_COOLDOWN = 200
@@ -249,6 +249,8 @@ func _process(delta):
 			ground_slam = ground_slam_preload.instantiate()
 			add_child(ground_slam)
 			data.slamming = true
+			
+			$slam_woosh.play()
 			
 			ground_slam.global_position = Vector2(self.global_position.x, self.global_position.y - 20)
 			

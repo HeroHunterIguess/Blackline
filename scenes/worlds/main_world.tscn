@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bkmlc24e32ogs" path="res://art/objects_characters/ground_square.png" id="6_aqpkv"]
 [ext_resource type="PackedScene" uid="uid://b2a6f466fjkcf" path="res://scenes/menus/pause_menu.tscn" id="7_hvjhl"]
 [ext_resource type="AudioStream" uid="uid://d228r6p8favlf" path="res://audio/game sfx/thump_boom.mp3" id="8_fupqw"]
+[ext_resource type="AudioStream" uid="uid://duftr83ggvtmd" path="res://audio/game sfx/woosh.mp3" id="9_eu67m"]
 
 [sub_resource type="Environment" id="Environment_y1qdg"]
 background_mode = 3
@@ -43,8 +44,8 @@ script = ExtResource("1_w87fn")
 environment = SubResource("Environment_y1qdg")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=351425868]
-modulate = Color(0.9471994, 0.9471994, 0.9471994, 1)
-self_modulate = Color(0.8992584, 0.8992584, 0.8992584, 1)
+modulate = Color(0.9297147, 0.9297146, 0.929715, 1)
+self_modulate = Color(0.82606083, 0.82605964, 0.82606024, 1)
 texture_filter = 1
 position = Vector2(2500.0002, 64.00003)
 scale = Vector2(1.9281253, 0.7111111)
@@ -149,5 +150,11 @@ autostart = true
 position = Vector2(2496, 544)
 stream = ExtResource("8_fupqw")
 volume_db = -1.0
+
+[node name="slam_woosh" type="AudioStreamPlayer2D" parent="." unique_id=249952845]
+position = Vector2(2496, 544)
+stream = ExtResource("9_eu67m")
+volume_db = 2.0
+pitch_scale = 0.74
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
