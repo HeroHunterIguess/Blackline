@@ -2,7 +2,7 @@ extends "res://scripts/autoloads/enemy_methods.gd"
 
 const JUMP_FORCE = 550
 const SOFT_SPEED_CAP = 325
-const DAMAGE = 8
+const DAMAGE = 7
 
 var health = 100
 
