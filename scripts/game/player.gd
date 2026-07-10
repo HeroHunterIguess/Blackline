@@ -151,7 +151,7 @@ func _physics_process(delta: float) -> void:
 		current_gravity = global.GRAVITY
 	
 	# check when ground slam hits ground
-	if data.slamming && is_on_floor():
+	if data.slamming && is_on_floor() or (data.slamming && self.velocity.y < 0):
 		velocity.y = -SLAM_REBOUNCE
 		
 		is_attacking = false
