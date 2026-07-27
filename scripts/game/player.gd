@@ -234,6 +234,7 @@ func _process(delta):
 				melee_attack.global_position = Vector2(self.global_position.x + 35, self.global_position.y)
 			if get_local_mouse_position().x < 0:
 				melee_attack.global_position = Vector2(self.global_position.x - 35, self.global_position.y)
+			melee_attack.scale.y = 0.01
 			
 			await get_tree().create_timer(0.25).timeout
 			is_attacking = false

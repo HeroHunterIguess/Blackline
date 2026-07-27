@@ -10,6 +10,7 @@ func _on_area_entered(area: Area2D) -> void:
 
 # move in direction of attack
 func _process(_delta):
+	$Attack.scale.y += 2 * SPEED
 	if get_tree().root.find_child("player",true,false).to_local(self.global_position).x >= 0:
 		$Attack.global_position.x += SPEED
 		$CollisionShape2D.global_position.x += SPEED
