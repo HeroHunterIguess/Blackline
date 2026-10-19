@@ -4,6 +4,8 @@ const JUMP_FORCE = 550
 const SOFT_SPEED_CAP = 325
 const DAMAGE = 7
 
+@export var AF : int = 0
+
 var health = 100
 
 ### update physics and movement ###
